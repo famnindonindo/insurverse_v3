@@ -15,7 +15,7 @@ creds_dict = {
   "type": "service_account",
   "project_id": "swift-drive-434602-b7",
   "private_key_id": "94d052ad1cb890cee0af44cbd85d7d20d523aebb",
-  "private_key": st.secrets["private_key"]
+  "private_key": st.secrets["private_key"],
   "client_email": "pythonsheets@swift-drive-434602-b7.iam.gserviceaccount.com",
   "client_id": "115023323336387356135",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
