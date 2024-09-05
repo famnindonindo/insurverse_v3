@@ -43,7 +43,7 @@ def Message_date():
     # Print the current time in UTC+7
     return now_utc_plus_7.strftime(("%d/%m/%y %H:%M:%S"))
 
-genai.configure(api_key= st.secretes["api_key"])
+genai.configure(api_key= st.secrets["api_key"])
 generation_config = {
     "temperature": 0.1,
     "top_p": 0.95,
