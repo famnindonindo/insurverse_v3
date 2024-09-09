@@ -107,12 +107,12 @@ if prompt := st.chat_input():
     st.chat_message("user").write(prompt)
 
     def typewriter(text,delay=0.02):
-      container = st.empty()
-      displayed_text = ""
-      for char in text:
-        displayed_text += char
-        container.markdown(displayed_text)
-        time.sleep(delay)
+        container = st.empty()
+        displayed_text = ""
+        for char in text:
+            displayed_text += char
+            container.markdown(displayed_text)
+            time.sleep(delay)
   
     def generate_response():
         history = [
