@@ -131,9 +131,8 @@ if prompt := st.chat_input():
             response = chat_session.send_message(prompt)
             sheet.append_row([len(sheet.get_all_values()),str(response.text),"AI",Message_date()])
             st.session_state["messages"].append({"role": "model", "content": response.text})
-            st.chat_message("model")
-            typewriter(response.text)
-          
+            st.chat_message("model").write(response.text)
+            
 
     generate_response()
 
