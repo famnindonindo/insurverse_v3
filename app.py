@@ -2,7 +2,7 @@ import os
 import google.generativeai as genai
 import pandas as pd
 import streamlit as st
-from prompt import PROMPT_INSURVERSE,PROMPT_INSURVERSE_2
+from prompt import PROMPT_INSURVERSE_2
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 from datetime import datetime,timedelta,timezone
 
