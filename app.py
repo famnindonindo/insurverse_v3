@@ -106,6 +106,14 @@ if prompt := st.chat_input():
     st.session_state["messages"].append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
 
+    def typewriter(text,delay=0.02):
+      container = st.empty()
+      displayed_text = ""
+      for char in text:
+        displayed_text += char
+        container.markdown(displayed_text)
+        time.sleep(delay)
+  
     def generate_response():
         history = [
             {"role": msg["role"], "parts": [{"text": msg["content"]}]}
