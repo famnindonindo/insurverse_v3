@@ -89,7 +89,7 @@ if "messages" not in st.session_state:
         }
     ]
 
-file_path = "insurverse_p1 (7).xlsx"
+file_path = "insurverse_p1 (8).xlsx"
 try:
     df = pd.read_excel(file_path)
     file_content = df.to_string(index=False)
@@ -121,8 +121,8 @@ if prompt := st.chat_input():
         ]
         if prompt.lower().startswith("add") or prompt.lower().endswith("add"):
             sheet_2.append_row([len(sheet_2.get_all_values()),str(prompt),"user",Message_date()])
-            st.chat_message("model").write("ขอบคุณสำหรับคำแนะนำค่ะ 😊")
-            st.session_state["messages"].append({"role": "model", "content": "ขอบคุณสำหรับคำแนะนำค่ะ 😊"})
+            st.chat_message("model").write("ขอบคุณสำหรับคำแนะนำค่ะ")
+            st.session_state["messages"].append({"role": "model", "content": "ขอบคุณสำหรับคำแนะนำค่ะ"})
         else:
             history.insert(1, {"role": "user", "parts": [{"text": file_content}]})
             sheet.append_row([len(sheet.get_all_values()),str(prompt),"user",Message_date()])
