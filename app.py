@@ -72,7 +72,7 @@ def clear_history():
     st.session_state["messages"] = [
         {"role": "model", "content": "อินชัวร์เวิร์ส สวัสดีค่ะ คุณลูกค้า สอบถามข้อมูลประกันเรื่องใดคะ"}
     ]
-    st.experimental_rerun()
+    st.rerun()
 
 
 with st.sidebar:
