@@ -5,7 +5,7 @@ import streamlit as st
 from prompt import PROMPT_INSURVERSE_2
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 from datetime import datetime,timedelta,timezone
-
+import time
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from pprint import pprint as pp
@@ -100,19 +100,21 @@ except Exception as e:
 
 
 for msg in st.session_state["messages"]:
-    st.chat_message(msg["role"]).write(msg["content"])
+    st.chat_message(msg["role"]).markdown(msg["content"])
 
 if prompt := st.chat_input():
     st.session_state["messages"].append({"role": "user", "content": prompt})
-    st.chat_message("user").write(prompt)
+    st.chat_message("user").markdown(prompt)
+  
+  def typewriter(text,delay=0.01):
+      container =st.empty()
+      displayed_text =""
+      for char in text:
+          displayed_text += char
+          container.markdown(displayed_text)
+          time.sleep(delay)
 
-    def typewriter(text,delay=0.02):
-        container = st.empty()
-        displayed_text = ""
-        for char in text:
-            displayed_text += char
-            container.markdown(displayed_text)
-            time.sleep(delay)
+    
   
     def generate_response():
         history = [
@@ -128,10 +130,19 @@ if prompt := st.chat_input():
             sheet.append_row([len(sheet.get_all_values()),str(prompt),"user",Message_date()])
         
             chat_session = model.start_chat(history=history)
+            with st.spinner("รอสักครู่ค่ะ"):
+                response = chat_session.send_message(prompt)
             response = chat_session.send_message(prompt)
             sheet.append_row([len(sheet.get_all_values()),str(response.text),"AI",Message_date()])
             st.session_state["messages"].append({"role": "model", "content": response.text})
-            st.chat_message("model").write(response.text)
+            #st.chat_message("model").write(response.text)
+            with st.chat_message("model"):
+                container = st.empty()
+                displayed_text =""
+                for char in response.text:
+                    displayed_text += char
+                    container.markdown(displayed_text)
+                    time.sleep(0.01)
             
 
     generate_response()
